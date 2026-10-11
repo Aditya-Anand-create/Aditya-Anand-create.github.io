@@ -1,4 +1,5 @@
 (function(){
+  var yr=document.getElementById('yr');if(yr)yr.textContent=new Date().getFullYear();
   var embed=false;try{embed=window.top!==window}catch(e){embed=true}
   if(embed)document.documentElement.classList.add('embed');
   [].forEach.call(document.querySelectorAll('a[href^="#"]'),function(l){l.addEventListener('click',function(ev){
@@ -56,7 +57,7 @@
     [].forEach.call(document.querySelectorAll('.show'),function(box){
       var key=box.getAttribute('data-p'),d=DEF[key],cv=box.querySelector('canvas'),ctx=cv.getContext('2d'),imgs=[],cur=-1,started=false;
       if(reduceM)return;
-      function src(i){return LIST?LIST[key][i]:'img/frames/'+d.p+pad(i)+'.webp'}
+      function src(i){return LIST?LIST[key][i]:d.p+pad(i)+'.webp'}
       function draw(i,force){var im=imgs[i];if(!im||!im.complete||!im.naturalWidth)return;
         if(i===cur&&!force)return;cur=i;ctx.clearRect(0,0,cv.width,cv.height);ctx.drawImage(im,0,0,cv.width,cv.height);box.classList.add('live')}
       function load(){if(started)return;started=true;
